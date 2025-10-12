@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>我的请假</title>
+    <link rel="stylesheet" th:href="@{/css/table.css}">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script th:src="@{/js/table-search.js}"></script>
+</head>
+<body>
+<div class="container">
+<h2>我的请假记录</h2>
+
+<!-- 搜索框 -->
+<div class="search-box">
+    <input type="text" id="searchInput" placeholder="输入原因/状态进行搜索...">
+</div>
+
+<table id="Table">
+    <thead>
+    <tr>
+        <th>开始时间</th>
+        <th>结束时间</th>
+        <th>原因</th>
+        <th>创建时间</th>
+        <th>状态</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="req : ${leaves}">
+        <td th:text="${req.startTime}"></td>
+        <td th:text="${req.endTime}"></td>
+        <td th:text="${req.reason}"></td>
+        <td th:text="${req.createdAt}"></td>
+        <td th:text="${req.status}"></td>
+    </tr>
+    </tbody>
+</table>
+</div>
+</body>
+</html>

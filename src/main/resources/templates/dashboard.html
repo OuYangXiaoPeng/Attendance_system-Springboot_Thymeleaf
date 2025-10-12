@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <title>主页</title>
+    <link rel="stylesheet" th:href="@{/css/dashborad.css}">
+    <script th:src="@{/js/dashborad.js}"></script>
+</head>
+<body>
+<div class="container">
+
+    <!-- 左侧导航栏 -->
+    <div class="sidebar">
+        <h2 th:text="${user.fullName} ?: ${user.username}"></h2>
+        <p th:text="'角色: ' + ${user.role}"></p>
+
+        <!-- 学生功能区 -->
+        <ul th:if="${user.role == 'STUDENT'}">
+            <li><a th:href="@{/attendance/checkin}">打卡签到</a></li>
+            <li><a th:href="@{/attendance/my}">我的考勤记录</a></li>
+            <li><a th:href="@{/leave/apply}">请假申请</a></li>
+            <li><a th:href="@{/leave/my}">我的请假记录</a></li>
+        </ul>
+
+        <!-- 老师功能区 -->
+        <ul th:if="${user.role == 'TEACHER'}">
+            <li><a th:href="@{/attendance/list}">查看学生考勤记录</a></li>
+            <li><a th:href="@{/leave/manage}">审批学生请假</a></li>
+        </ul>
+
+        <!-- 管理员功能区 -->
+        <ul th:if="${user.role == 'ADMIN'}">
+            <li><a th:href="@{/admin/user_manage}">用户管理</a></li>
+            <li><a th:href="@{/admin/attendance_manage}">考勤数据管理</a></li>
+            <li><a th:href="@{/admin/leave_manage}">请假数据管理</a></li>
+            <li><a th:href="@{/admin/dashboard}">数据大屏</a></li>
+        </ul>
+
+        <!-- 退出按钮 -->
+        <div class="logout">
+            <a th:href="@{/logout}">退出登录</a>
+        </div>
+    </div>
+
+    <!-- 右侧内容区 -->
+    <div class="content">
+        <div id="breadcrumb" class="breadcrumb">当前位置:首页</div>
+
+        <!-- 默认欢迎面板 -->
+        <div id="welcome-panel" class="welcome-panel">
+            <h2>欢迎使用考勤系统</h2>
+            <p>请选择左侧功能开始操作。</p>
+        </div>
+
+        <!-- 功能区 iframe -->
+        <iframe id="content-frame" style="display:none;"></iframe>
+    </div>
+
+</div>
+</body>
+</html>

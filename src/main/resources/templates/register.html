@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <title>注册</title>
+</head>
+<body>
+<h2>注册</h2>
+<form th:action="@{/register}" method="post">
+    <!-- 角色选择 -->
+    <div>
+        <label>角色</label>
+        <select id="role" name="role">
+            <option value="STUDENT">学生</option>
+            <option value="TEACHER">老师</option>
+        </select>
+    </div>
+
+    <div><label>用户名</label>
+        <input type="text" id="username" name="username" value="S" required/>
+    </div>
+    <div><label>密码</label>
+        <input type="password" name="password" required/>
+    </div>
+    <div><label>姓名</label>
+        <input type="text" name="fullName" required/>
+    </div>
+    <div><label>电话</label>
+        <input type="text" name="phone"/>
+    </div>
+
+    <div th:if="${error}" style="color:red;"><p th:text="${error}"></p></div>
+    <button type="submit">注册</button>
+</form>
+<a th:href="@{/login}">已有账号？去登录</a>
+</body>
+<script>
+    function updateUsernamePrefix() {
+        const role = document.getElementById("role").value;
+        const usernameInput = document.getElementById("username");
+
+        if (role === "STUDENT") {
+            if (!usernameInput.value.startsWith("S")) {
+                usernameInput.value = "S" + usernameInput.value.replace(/^[ST]/, "");
+            }
+        } else if (role === "TEACHER") {
+            if (!usernameInput.value.startsWith("T")) {
+                usernameInput.value = "T" + usernameInput.value.replace(/^[ST]/, "");
+            }
+        }
+    }
+
+    window.onload = function () {
+        document.getElementById("role").addEventListener("change", updateUsernamePrefix);
+    }
+</script>
+</html>

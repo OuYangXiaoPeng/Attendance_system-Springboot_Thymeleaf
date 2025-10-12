@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="caijing.com.attendance.mapper.AdminDashboardMapper">
+
+    <!-- 统计用户角色 -->
+    <select id="countUserByRole" resultType="map">
+        SELECT role AS name, COUNT(*) AS value
+        FROM users
+        GROUP BY role
+    </select>
+
+    <!-- 统计请假状态 -->
+    <select id="countLeaveByStatus" resultType="map">
+        SELECT status AS name, COUNT(*) AS value
+        FROM leave_request
+        GROUP BY status
+    </select>
+
+    <!-- 统计打卡地点 -->
+    <select id="countAttendanceByLocation" resultType="map">
+        SELECT location AS name, COUNT(*) AS value
+        FROM attendance
+        GROUP BY location
+    </select>
+
+    <!-- 统计打卡方式 -->
+    <select id="countAttendanceByMethod" resultType="map">
+        SELECT method AS name, COUNT(*) AS value
+        FROM attendance a
+        GROUP BY a.method
+    </select>
+
+</mapper>
