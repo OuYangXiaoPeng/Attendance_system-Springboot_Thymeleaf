@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <title>编辑考勤</title>
+    <link rel="stylesheet" th:href="@{/css/attendance-edit.css}">
+</head>
+<body>
+<div class="container">
+    <h2>编辑考勤记录</h2>
+    <form th:action="@{/admin/attendance_update}" method="post" th:object="${record}" class="form-box">
+        <input type="hidden" th:field="*{id}"/>
+
+        <div class="form-group">
+            <label>学生姓名：</label>
+            <input type="text" th:field="*{fullName}" readonly/>
+        </div>
+
+        <div class="form-group">
+            <label>签到时间：</label>
+            <input type="datetime-local" name="checkinTime" th:value="*{checkinTime}" required/>
+        </div>
+
+        <div class="form-group">
+            <label>签到地点：</label>
+            <input type="text" th:field="*{location}"/>
+        </div>
+
+        <div class="form-group">
+            <label>方式：</label>
+            <input type="text" th:field="*{method}"/>
+        </div>
+
+        <button type="submit" class="btn-submit">保存修改</button>
+    </form>
+
+    <a th:href="@{/admin/attendance_manage}" class="btn-back">返回考勤数据管理</a>
+</div>
+</body>
+</html>

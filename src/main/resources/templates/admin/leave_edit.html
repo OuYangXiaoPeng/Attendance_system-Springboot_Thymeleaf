@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <title>编辑请假记录</title>
+    <link rel="stylesheet" th:href="@{/css/leave-edit.css}">
+</head>
+<body>
+<div class="container">
+    <h2>编辑请假记录</h2>
+    <form th:action="@{/admin/leave_update}" method="post" th:object="${leave}" class="form-box">
+        <input type="hidden" th:field="*{id}"/>
+
+        <div class="form-group">
+            <label>学生姓名：</label>
+            <input type="text" th:field="*{fullName}" readonly/>
+        </div>
+
+        <div class="form-group">
+            <label>开始时间：</label>
+            <input type="datetime-local" th:field="*{startTime}" required/>
+        </div>
+
+        <div class="form-group">
+            <label>结束时间：</label>
+            <input type="datetime-local" th:field="*{endTime}" required/>
+        </div>
+
+        <div class="form-group">
+            <label>原因：</label>
+            <input type="text" th:field="*{reason}"/>
+        </div>
+
+        <div class="form-group">
+            <label>状态：</label>
+            <select th:field="*{status}">
+                <option value="待审批">待审批</option>
+                <option value="已批准">已批准</option>
+                <option value="已驳回">已驳回</option>
+            </select>
+        </div>
+
+        <button type="submit" class="btn-submit">保存修改</button>
+    </form>
+
+    <a th:href="@{/admin/leave_manage}" class="btn-back">返回请假管理</a>
+</div>
+</body>
+</html>

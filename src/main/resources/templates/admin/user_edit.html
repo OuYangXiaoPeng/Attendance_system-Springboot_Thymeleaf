@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <title>编辑用户</title>
+    <link rel="stylesheet" th:href="@{/css/user-edit.css}">
+</head>
+<body>
+<div class="container">
+    <h2>编辑用户</h2>
+    <form th:action="@{/admin/user_edit}" method="post" th:object="${user}" class="form-box">
+        <input type="hidden" th:field="*{id}"/>
+
+        <div class="form-group">
+            <label>用户名</label>
+            <input type="text" th:field="*{username}" required/>
+        </div>
+
+        <div class="form-group">
+            <label>密码</label>
+            <input type="password" th:field="*{password}" required/>
+        </div>
+
+        <div class="form-group">
+            <label>姓名</label>
+            <input type="text" th:field="*{fullName}"/>
+        </div>
+
+        <div class="form-group">
+            <label>电话</label>
+            <input type="text" th:field="*{phone}"/>
+        </div>
+
+        <div class="form-group">
+            <label>角色</label>
+            <select th:field="*{role}">
+                <option value="STUDENT">学生</option>
+                <option value="TEACHER">老师</option>
+                <option value="ADMIN">管理员</option>
+            </select>
+        </div>
+
+        <button type="submit" class="btn-submit">保存修改</button>
+    </form>
+
+    <a th:href="@{/admin/user_manage}" class="btn-back">返回用户管理</a>
+</div>
+</body>
+</html>

@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>请假申请</title>
+    <link rel="stylesheet" th:href="@{/css/leave-apply.css}">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script th:src="@{/js/leave-apply.js}"></script>
+</head>
+<body>
+<div class="container">
+    <h2>请假申请</h2>
+    <p>请填写请假信息并提交</p>
+
+    <form id="leaveForm" th:action="@{/leave/apply}" method="post">
+        <label>开始时间：</label>
+        <input type="datetime-local" name="startTime" required>
+
+        <label>结束时间：</label>
+        <input type="datetime-local" name="endTime" required>
+
+        <label>原因：</label>
+        <input type="text" name="reason" placeholder="请输入请假原因" required>
+
+        <button type="submit">提交申请</button>
+    </form>
+
+    <div id="message"></div>
+</div>
+</body>
+</html>

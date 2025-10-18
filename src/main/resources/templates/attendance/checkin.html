@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <title>打卡签到</title>
+    <link rel="stylesheet" th:href="@{/css/checkin.css}">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script th:src="@{/js/checkin.js}"></script>
+</head>
+<body>
+<div class="container">
+    <h2>打卡签到</h2>
+    <p>欢迎: <span th:text="${user.fullName} ?: ${user.username}"></span></p>
+
+    <form id="checkinForm">
+        <label>地点：</label>
+        <input type="text" name="location" class="location-input" placeholder="教室/宿舍/校外" required/>
+
+        <label>方式：</label>
+        <select name="method">
+            <option value="手机">手机</option>
+            <option value="刷脸">刷脸</option>
+        </select>
+
+        <button type="submit">立即打卡</button>
+    </form>
+
+    <div id="message"></div>
+</div>
+</body>
+</html>
