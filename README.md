@@ -1,4 +1,5 @@
 基于Springboot+Thymeleaf的学生考勤系统的设计与实现
+
 登录和注册页面
 <img width="2000" height="994" alt="image" src="https://github.com/user-attachments/assets/043e4bd4-39b4-487c-bf8a-faea73dc05df" />
 <img width="2000" height="996" alt="image" src="https://github.com/user-attachments/assets/1006858e-c2b8-4ce0-9698-ea184bbd4630" />
